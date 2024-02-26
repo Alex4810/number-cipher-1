@@ -37,8 +37,8 @@ public static void ask()
 }
 public static long generateKey()
 {
-    long min = 10L;
-    long max = 99L;
+    long min = 1000000000L;
+    long max = 9999999999L;
     return rng.longs(min, max +1).findFirst().getAsLong();
 }
 
@@ -51,15 +51,9 @@ public static void encrypt()
     String message = scan.nextLine().toLowerCase();
     for(int i = 0; i < message.length(); i++)
     {
-        encryptedMessage += (Converter.charToInt(message.charAt(i)));
-        encryptedMessage += "1";
+        encryptedMessage += (Converter.charToInt(message.charAt(i))*key);
+        encryptedMessage += "\n";
     }
-
-    long encryptedLong = Long.parseLong(encryptedMessage);
-    encryptedLong = encryptedLong * key;
-
-    encryptedMessage = "";
-    encryptedMessage += encryptedLong;
 
     System.out.println("Your Symmetric Key is:" + key + "\nEncrypted Message: \n" + encryptedMessage);
 
